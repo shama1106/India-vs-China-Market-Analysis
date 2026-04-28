@@ -1,8 +1,5 @@
 # 🌏 India vs China — Market Attractiveness for Australian Companies
 
-**Course:** GSBS 6003 · Globalisation  
-**Group:** A4 · Assessment 2  
-**University:** University of Newcastle
 
 🔗 **[View Live Portfolio →](https://shama1106.github.io/India-vs-China-Market-Analysis/)**
 📄 **[Read Full Report →](https://github.com/shama1106/India-vs-China-Market-Analysis/blob/main/India-vs-China-Report.pdf)**
