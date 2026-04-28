@@ -72,14 +72,5 @@ Based on the analysis, both India and China offer some opportunities, but there 
 
 ---
 
-## 👥 Team
-
-| Name | Student ID |
-|------|------------|
-| Junxi Ding | c3395297 |
-| Maninder Singh | c3437806 |
-| Shama Praveen | c3470623 |
-
----
 
 *Prepared for GSBS 6003 · Globalisation · University of Newcastle*
