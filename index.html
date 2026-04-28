@@ -1,2 +1,677 @@
-# India vs China Market Analysis.html
-India vs China Market Analysis
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>India vs China — Portfolio | GSBS 6003 Group A4</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue-dark: #0C447C;
+    --blue-mid: #185FA5;
+    --blue-light: #E6F1FB;
+    --blue-text: #0C447C;
+    --teal: #1D9E75;
+    --teal-light: #E1F5EE;
+    --teal-text: #085041;
+    --green: #3B6D11;
+    --green-light: #EAF3DE;
+    --amber: #854F0B;
+    --amber-light: #FAEEDA;
+    --amber-mid: #BA7517;
+    --coral: #D85A30;
+    --coral-light: #FAECE7;
+    --purple: #7F77DD;
+    --purple-light: #EEEDFE;
+    --pink-light: #FBEAF0;
+    --gray-50: #F7F6F2;
+    --gray-100: #EDECE7;
+    --gray-200: #D3D1C7;
+    --gray-600: #5F5E5A;
+    --gray-800: #2C2C2A;
+    --text: #1a1a18;
+    --text-muted: #5F5E5A;
+    --text-hint: #8A8880;
+    --border: rgba(0,0,0,0.10);
+    --border-strong: rgba(0,0,0,0.18);
+    --surface: #ffffff;
+    --bg: #F4F3EF;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 22px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244,243,239,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-brand {
+    font-size: 13px; font-weight: 500; color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .nav-links {
+    display: flex; gap: 1.5rem; list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px; color: var(--text-muted); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* LAYOUT */
+  .page { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0C447C 0%, #185FA5 55%, #1D9E75 100%);
+    border-radius: var(--radius-xl);
+    padding: 3.5rem 3rem 3rem;
+    color: white;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 240px; height: 240px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -30px; left: 60px;
+    width: 130px; height: 130px; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .hero-tag {
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    background: rgba(255,255,255,0.15);
+    display: inline-block;
+    padding: 5px 12px; border-radius: 6px;
+    margin-bottom: 1.25rem; color: rgba(255,255,255,0.9);
+    border: 0.5px solid rgba(255,255,255,0.2);
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 36px);
+    font-weight: 700; line-height: 1.25;
+    margin-bottom: 1rem; color: white;
+  }
+
+  .hero-sub {
+    font-size: 15px; color: rgba(255,255,255,0.8);
+    max-width: 560px; line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .hero-pills {
+    display: flex; gap: 8px; flex-wrap: wrap;
+  }
+
+  .pill {
+    font-size: 12px;
+    background: rgba(255,255,255,0.12);
+    color: white;
+    padding: 5px 13px; border-radius: 20px;
+    border: 0.5px solid rgba(255,255,255,0.22);
+  }
+
+  /* SECTION HEADERS */
+  .section { margin-bottom: 2.5rem; }
+
+  .section-label {
+    font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-hint); margin-bottom: 0.85rem;
+    padding-left: 2px;
+  }
+
+  /* METRICS */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px; margin-bottom: 2rem;
+  }
+
+  .metric {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.1rem 1rem; text-align: center;
+  }
+
+  .metric-num {
+    font-size: 26px; font-weight: 500;
+    color: var(--text); display: block;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .metric-label {
+    font-size: 11px; color: var(--text-muted);
+    margin-top: 3px; display: block;
+  }
+
+  /* SUMMARY */
+  .summary-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem;
+    font-size: 15px; line-height: 1.8; color: var(--text);
+  }
+
+  /* COUNTRY COMPARE */
+  .compare-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+    margin-bottom: 2rem;
+  }
+
+  .country-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg); overflow: hidden;
+  }
+
+  .country-header {
+    padding: 1rem 1.25rem 0.75rem;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+
+  .flag { font-size: 24px; line-height: 1; }
+
+  .country-name {
+    font-size: 16px; font-weight: 500; color: var(--text);
+  }
+
+  .country-body { padding: 0.85rem 1.25rem; }
+
+  .country-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 6px 0; border-bottom: 0.5px solid var(--border);
+    font-size: 13px;
+  }
+  .country-row:last-child { border-bottom: none; }
+
+  .country-key { color: var(--text-muted); }
+  .country-val { font-weight: 500; color: var(--text); }
+
+  .badge {
+    font-size: 10.5px; padding: 3px 8px;
+    border-radius: 10px; font-weight: 500;
+  }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-blue { background: var(--blue-light); color: var(--blue-text); }
+
+  /* PILLARS */
+  .pillars {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 12px; margin-bottom: 2rem;
+  }
+
+  .pillar {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.4rem;
+  }
+
+  .pillar-icon {
+    width: 36px; height: 36px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; margin-bottom: 0.75rem;
+  }
+
+  .pillar h3 {
+    font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 0.4rem;
+  }
+
+  .pillar p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+  /* SCORE BARS */
+  .score-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem; margin-bottom: 2rem;
+  }
+
+  .score-intro {
+    font-size: 13px; color: var(--text-muted); margin-bottom: 1.5rem;
+  }
+
+  .score-cols {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+
+  .score-country {
+    font-size: 13px; font-weight: 500; margin-bottom: 1rem; color: var(--text);
+  }
+
+  .bar-row {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 11px;
+  }
+
+  .bar-label {
+    font-size: 12px; color: var(--text-muted); width: 120px; flex-shrink: 0;
+  }
+
+  .bar-track {
+    flex: 1; height: 7px;
+    background: var(--gray-100); border-radius: 4px; overflow: hidden;
+  }
+
+  .bar-fill { height: 100%; border-radius: 4px; }
+
+  .bar-pct {
+    font-size: 11px; color: var(--text-muted); width: 32px;
+    text-align: right; flex-shrink: 0;
+  }
+
+  /* RISKS */
+  .risks {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 12px; margin-bottom: 2rem;
+  }
+
+  .risk {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.25rem;
+  }
+
+  .risk-header {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  }
+
+  .risk-dot {
+    width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+  }
+
+  .risk-title { font-size: 14px; font-weight: 500; color: var(--text); }
+
+  .risk-text { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+
+  /* ENTRY MODES */
+  .entry-modes {
+    display: grid; grid-template-columns: repeat(2, 1fr);
+    gap: 12px; margin-bottom: 2rem;
+  }
+
+  .entry {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.1rem 1.25rem;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+
+  .entry-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--blue-light); color: var(--blue-text);
+    font-size: 12px; font-weight: 500;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+
+  .entry-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
+  .entry-desc { font-size: 12.5px; color: var(--text-muted); line-height: 1.55; }
+
+  /* RECS */
+  .rec-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem 2rem; margin-bottom: 2rem;
+  }
+
+  .rec-row {
+    display: flex; gap: 1.1rem; align-items: flex-start;
+    padding: 0.75rem 0; border-bottom: 0.5px solid var(--border);
+  }
+  .rec-row:last-child { border-bottom: none; }
+
+  .rec-label {
+    font-size: 12px; font-weight: 500;
+    background: var(--blue-light); color: var(--blue-text);
+    border-radius: 5px; padding: 4px 10px; white-space: nowrap;
+    flex-shrink: 0; align-self: flex-start; margin-top: 1px;
+  }
+
+  .rec-text { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  /* TEAM */
+  .team {
+    display: flex; gap: 12px; flex-wrap: wrap;
+  }
+
+  .member {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1.2rem; flex: 1; min-width: 180px;
+  }
+
+  .avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 500; flex-shrink: 0;
+  }
+
+  .member-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .member-id { font-size: 12px; color: var(--text-muted); }
+
+  /* FOOTER */
+  footer {
+    text-align: center; padding: 2.5rem 2rem;
+    font-size: 12px; color: var(--text-hint);
+    border-top: 0.5px solid var(--border);
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 600px) {
+    .page { padding: 2rem 1.25rem 4rem; }
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .compare-grid, .pillars, .risks, .entry-modes, .score-cols { grid-template-columns: 1fr; }
+    .hero { padding: 2.5rem 1.75rem 2rem; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">GSBS 6003 · Group A4</span>
+  <ul class="nav-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#analysis">Analysis</a></li>
+    <li><a href="#strategy">Strategy</a></li>
+    <li><a href="#team">Team</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero" id="overview">
+    <div class="hero-tag">GSBS 6003 · Globalisation · Assessment 2 · Group A4</div>
+    <h1>India vs China: Market Attractiveness for Australian Companies</h1>
+    <p class="hero-sub">A comparative analysis prepared for the Australian Trade Commission (Austrade), evaluating investment opportunities across political, economic, socio-cultural, and legal dimensions.</p>
+    <div class="hero-pills">
+      <span class="pill">Group Assignment</span>
+      <span class="pill">Comparative Analysis</span>
+      <span class="pill">International Business</span>
+      <span class="pill">Market Entry</span>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics">
+    <div class="metric">
+      <span class="metric-num">2</span>
+      <span class="metric-label">Countries Analysed</span>
+    </div>
+    <div class="metric">
+      <span class="metric-num">4</span>
+      <span class="metric-label">Key Dimensions</span>
+    </div>
+    <div class="metric">
+      <span class="metric-num">2.7B+</span>
+      <span class="metric-label">Combined Population</span>
+    </div>
+    <div class="metric">
+      <span class="metric-num">4</span>
+      <span class="metric-label">Entry Strategies</span>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section" id="analysis">
+    <div class="section-label">Executive Summary</div>
+    <div class="summary-card">
+      This report analyzes and compares the attractiveness of <strong>India</strong> and <strong>China</strong> as destinations for Australian companies seeking international expansion. Research shows China exhibits higher political stability and more predictable regulation, while India demonstrates stronger recent GDP growth and more favorable ease-of-doing-business indices. Both nations present significant opportunities in e-commerce, renewable energy, and healthcare — alongside complex legal, social, and technological risks requiring tailored advisory strategies from Austrade.
+    </div>
+  </div>
+
+  <!-- COUNTRY SNAPSHOT -->
+  <div class="section">
+    <div class="section-label">Country Snapshot</div>
+    <div class="compare-grid">
+      <div class="country-card">
+        <div class="country-header">
+          <span class="flag">🇮🇳</span>
+          <span class="country-name">India</span>
+        </div>
+        <div class="country-body">
+          <div class="country-row"><span class="country-key">Population</span><span class="country-val">~1.3 Billion</span></div>
+          <div class="country-row"><span class="country-key">GDP Growth</span><span class="country-val"><span class="badge badge-green">Higher (recent)</span></span></div>
+          <div class="country-row"><span class="country-key">Political System</span><span class="country-val">Democracy</span></div>
+          <div class="country-row"><span class="country-key">IP Protection</span><span class="country-val"><span class="badge badge-amber">Improving</span></span></div>
+          <div class="country-row"><span class="country-key">Ease of Business</span><span class="country-val"><span class="badge badge-green">Favorable</span></span></div>
+          <div class="country-row"><span class="country-key">Key Opportunity</span><span class="country-val">IT &amp; Renewables</span></div>
+        </div>
+      </div>
+      <div class="country-card">
+        <div class="country-header">
+          <span class="flag">🇨🇳</span>
+          <span class="country-name">China</span>
+        </div>
+        <div class="country-body">
+          <div class="country-row"><span class="country-key">Population</span><span class="country-val">~1.4 Billion</span></div>
+          <div class="country-row"><span class="country-key">GDP Growth</span><span class="country-val"><span class="badge badge-blue">Stable</span></span></div>
+          <div class="country-row"><span class="country-key">Political System</span><span class="country-val">Centralized</span></div>
+          <div class="country-row"><span class="country-key">IP Protection</span><span class="country-val"><span class="badge badge-green">Stronger</span></span></div>
+          <div class="country-row"><span class="country-key">Ease of Business</span><span class="country-val"><span class="badge badge-amber">Moderate</span></span></div>
+          <div class="country-row"><span class="country-key">Key Opportunity</span><span class="country-val">Tech &amp; Healthcare</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANALYSIS DIMENSIONS -->
+  <div class="section">
+    <div class="section-label">Analysis Dimensions</div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon" style="background: var(--blue-light);">📊</div>
+        <h3>Economic Environment</h3>
+        <p>GDP growth rates, inflation trends and purchasing power analysis comparing both nations' macroeconomic stability for foreign investors.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background: var(--green-light);">⚖️</div>
+        <h3>Political &amp; Legal</h3>
+        <p>Political stability, government policies, regulatory frameworks and IPR protections evaluated across both systems.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background: var(--amber-light);">🧭</div>
+        <h3>Market &amp; Consumer</h3>
+        <p>Population demographics, middle-class growth, e-commerce adoption, and sector-level demand signals in each market.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background: var(--pink-light);">🌱</div>
+        <h3>CSR &amp; Sustainability</h3>
+        <p>Corporate social responsibility practices, environmental policy trajectories, and their impact on brand trust and market positioning.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCORE BARS -->
+  <div class="section">
+    <div class="section-label">Comparative Investment Score</div>
+    <div class="score-card">
+      <p class="score-intro">Based on report analysis across key investment criteria (indicative scores)</p>
+      <div class="score-cols">
+        <div>
+          <p class="score-country">🇮🇳 India</p>
+          <div class="bar-row"><span class="bar-label">GDP Growth</span><div class="bar-track"><div class="bar-fill" style="width:82%;background:#3B6D11;"></div></div><span class="bar-pct">82%</span></div>
+          <div class="bar-row"><span class="bar-label">Ease of Entry</span><div class="bar-track"><div class="bar-fill" style="width:70%;background:#3B6D11;"></div></div><span class="bar-pct">70%</span></div>
+          <div class="bar-row"><span class="bar-label">Political Stability</span><div class="bar-track"><div class="bar-fill" style="width:55%;background:#3B6D11;"></div></div><span class="bar-pct">55%</span></div>
+          <div class="bar-row"><span class="bar-label">IP Protection</span><div class="bar-track"><div class="bar-fill" style="width:48%;background:#3B6D11;"></div></div><span class="bar-pct">48%</span></div>
+          <div class="bar-row"><span class="bar-label">Consumer Growth</span><div class="bar-track"><div class="bar-fill" style="width:75%;background:#3B6D11;"></div></div><span class="bar-pct">75%</span></div>
+        </div>
+        <div>
+          <p class="score-country">🇨🇳 China</p>
+          <div class="bar-row"><span class="bar-label">GDP Growth</span><div class="bar-track"><div class="bar-fill" style="width:72%;background:#185FA5;"></div></div><span class="bar-pct">72%</span></div>
+          <div class="bar-row"><span class="bar-label">Ease of Entry</span><div class="bar-track"><div class="bar-fill" style="width:58%;background:#185FA5;"></div></div><span class="bar-pct">58%</span></div>
+          <div class="bar-row"><span class="bar-label">Political Stability</span><div class="bar-track"><div class="bar-fill" style="width:80%;background:#185FA5;"></div></div><span class="bar-pct">80%</span></div>
+          <div class="bar-row"><span class="bar-label">IP Protection</span><div class="bar-track"><div class="bar-fill" style="width:72%;background:#185FA5;"></div></div><span class="bar-pct">72%</span></div>
+          <div class="bar-row"><span class="bar-label">Consumer Growth</span><div class="bar-track"><div class="bar-fill" style="width:68%;background:#185FA5;"></div></div><span class="bar-pct">68%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RISKS -->
+  <div class="section" id="strategy">
+    <div class="section-label">Risk Assessment</div>
+    <div class="risks">
+      <div class="risk">
+        <div class="risk-header">
+          <div class="risk-dot" style="background: var(--coral);"></div>
+          <span class="risk-title">Political Risk</span>
+        </div>
+        <p class="risk-text">India: regulatory uncertainty from democratic policy shifts. China: centralized decision-making can trigger sudden regulatory crackdowns affecting foreign firms.</p>
+      </div>
+      <div class="risk">
+        <div class="risk-header">
+          <div class="risk-dot" style="background: var(--amber-mid);"></div>
+          <span class="risk-title">Economic Risk</span>
+        </div>
+        <p class="risk-text">Currency fluctuations, inflationary pressures, and global trade conflicts affect market demand and business confidence across both economies.</p>
+      </div>
+      <div class="risk">
+        <div class="risk-header">
+          <div class="risk-dot" style="background: var(--purple);"></div>
+          <span class="risk-title">Social Risk</span>
+        </div>
+        <p class="risk-text">Cultural and language barriers, labor disputes, and demographic shifts — aging in China, rapid urbanization in India — impact supply chains and workforce planning.</p>
+      </div>
+      <div class="risk">
+        <div class="risk-header">
+          <div class="risk-dot" style="background: var(--blue-mid);"></div>
+          <span class="risk-title">Technological Risk</span>
+        </div>
+        <p class="risk-text">Rapid innovation disrupts legacy models. Cybersecurity threats and IPR vulnerabilities require ongoing investment in both markets to protect assets.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTRY STRATEGIES -->
+  <div class="section">
+    <div class="section-label">Entry Strategies</div>
+    <div class="entry-modes">
+      <div class="entry">
+        <div class="entry-num">1</div>
+        <div>
+          <div class="entry-title">Joint Ventures</div>
+          <div class="entry-desc">Leverage local partner knowledge, networks, and resources — especially effective in India for IT and renewable energy sectors.</div>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-num">2</div>
+        <div>
+          <div class="entry-title">Acquisitions</div>
+          <div class="entry-desc">Buy into established customer bases and infrastructure — well-suited to China's fast-moving technology and healthcare markets.</div>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-num">3</div>
+        <div>
+          <div class="entry-title">Strategic Partnerships</div>
+          <div class="entry-desc">Cost-effective, low-risk alliances ideal for market testing before committing significant capital in either country.</div>
+        </div>
+      </div>
+      <div class="entry">
+        <div class="entry-num">4</div>
+        <div>
+          <div class="entry-title">Wholly Owned Subsidiaries</div>
+          <div class="entry-desc">Full control, higher investment burden — best reserved for firms with ample resources and established market confidence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-label">Key Recommendations</div>
+    <div class="rec-card">
+      <div class="rec-row">
+        <span class="rec-label">India</span>
+        <span class="rec-text">Prioritize joint ventures or strategic partnerships in IT and renewable energy, leveraging India's growing middle class, rising digital adoption, and favorable ease-of-entry indices.</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-label">China</span>
+        <span class="rec-text">Favour acquisitions and strategic partnerships in technology and healthcare, targeting the aging population's needs and the government's clean energy transition agenda.</span>
+      </div>
+      <div class="rec-row">
+        <span class="rec-label">Austrade</span>
+        <span class="rec-text">Provide sector-specific advisory services with clear risk mitigation plans addressing regulatory, currency exchange, and socio-cultural barriers in both markets.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEAM -->
+  <div class="section" id="team">
+    <div class="section-label">Project Team</div>
+    <div class="team">
+      <div class="member">
+        <div class="avatar" style="background: var(--blue-light); color: var(--blue-text);">JD</div>
+        <div>
+          <div class="member-name">Junxi Ding</div>
+          <div class="member-id">c3395297</div>
+        </div>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background: var(--green-light); color: var(--green);">MS</div>
+        <div>
+          <div class="member-name">Maninder Singh</div>
+          <div class="member-id">c3437806</div>
+        </div>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background: var(--amber-light); color: var(--amber);">SP</div>
+        <div>
+          <div class="member-name">Shama Praveen</div>
+          <div class="member-id">c3470623</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  GSBS 6003 · Globalisation · Group A4 · Assessment 2 · University of Newcastle
+</footer>
+
+</body>
+</html>
