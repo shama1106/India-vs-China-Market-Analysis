@@ -3,7 +3,7 @@
 
 🔗 **[View Live Portfolio →](https://shama1106.github.io/India-vs-China-Market-Analysis/)**
 📄 **[Read Full Report →](https://github.com/shama1106/India-vs-China-Market-Analysis/blob/main/India-vs-China-Report.pdf)**
-📊 **[View Presentation →](https://github.com/shama1106/India-vs-China-Market-Analysis/blob/main/YourFileName.pptx)**
+📊 **[View Presentation →](https://github.com/shama1106/India-vs-China-Market-Analysis/blob/Presentation.pdf)**
 
 ---
 
